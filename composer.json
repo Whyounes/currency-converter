@@ -1,0 +1,30 @@
+{
+  "name": "youcan/currency-converter",
+  "description": "Currency Converter",
+  "autoload": {
+    "psr-4": {
+      "YouCan\\CurrencyConverter\\": "src/",
+      "YouCan\\CurrencyConverter\\Tests\\": "tests/"
+    },
+    "files": [
+      "src/helpers.php"
+    ],
+    "classmap": []
+  },
+  "require": {
+    "guzzlehttp/guzzle": "^6.3",
+    "psr/cache": "^1.0",
+    "phpunit/phpunit": "^7.5",
+    "symfony/cache": "^4.2"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "YouCan\\CurrencyConverter\\Adapters\\Laravel\\ConverterServiceProvider"
+      ],
+      "aliases": {
+        "CurrencyConverter": "YouCan\\CurrencyConverter\\Adapters\\Laravel\\ConverterFacade"
+      }
+    }
+  }
+}
