@@ -49,7 +49,7 @@ class Converter implements IConverter
 
         throw_if(
             !isset($response['success']) || $response['success'] == false,
-            new Exception("Couldn't get a result now")
+            new Exception("Couldn't get a result now " . data_get($response, 'error.info', ''))
         );
 
         return $response;
@@ -115,7 +115,7 @@ class Converter implements IConverter
 
         throw_if(
             !isset($response['success']) || $response['success'] == false || !isset($response['result']),
-            new Exception("Couldn't get a result now")
+            new Exception("Couldn't get a result now " . data_get($response, 'error.info', ''))
         );
 
         return (float)$response['result'];
