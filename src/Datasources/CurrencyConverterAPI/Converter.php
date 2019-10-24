@@ -34,7 +34,16 @@ class Converter implements IConverter
      */
     public function latestRates(string $baseCurrency, array $toCurrencies = []): array
     {
-        throw new Exception('Currency Converter API does not support this feature. Check doc (https://www.currencyconverterapi.com/docs)');
+        $queryArray = [];
+
+        foreach ($toCurrencies as $toCurrency) {
+            $queryArray[] = sprintf('%s_%s', $toCurrency, $baseCurrency);
+        }
+
+        $query = implode(',', $queryArray);
+        $response = (array)$this->request('convert', ['q' => $query, 'compact' => 'ultra']);
+
+        return $response;
     }
 
     /**
