@@ -31,20 +31,7 @@ class CachingConverter implements Converter
      */
     public function latestRates(string $baseCurrency, array $toCurrencies = []): array
     {
-        $cacheKey = sprintf(
-            '%s-latest-%s-%s',
-            md5(get_class($this->converter)), $baseCurrency, md5(implode('', $toCurrencies))
-        );
-
-        $cacheItem = $this->cache->getItem($cacheKey);
-
-        if (!$cacheItem->isHit()) {
-            $cacheItem->set($this->converter->latestRates($baseCurrency, $toCurrencies));
-            $cacheItem->expiresAfter($this->getExpireTime());
-            $this->cache->save($cacheItem);
-        }
-
-        return (array)$cacheItem->get();
+        return $this->converter->latestRates($baseCurrency, $toCurrencies);
     }
 
     /**
