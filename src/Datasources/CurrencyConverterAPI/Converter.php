@@ -141,4 +141,24 @@ class Converter implements IConverter
     {
         $this->apikey = $apikey;
     }
+
+    /**
+     * @return $this
+     */
+    public function paidPlan()
+    {
+        $this->onFreePlan = false;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function freePlan()
+    {
+        $this->onFreePlan = true;
+
+        return $this;
+    }
 }
